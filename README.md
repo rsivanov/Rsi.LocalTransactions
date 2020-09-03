@@ -7,7 +7,7 @@ Provides an implementation of LocalTransactionScope and DbConnectionScope classe
 
 Why?
 ===
-TransactionScope class itself doesn't guarantee that the transaction won't escalate to MSDTC - it depends on database type and version [Avoid unwanted Escalation to Distributed Transactions](https://petermeinl.wordpress.com/2011/03/13/avoiding-unwanted-escalation-to-distributed-transactions/)]. The only way to always get a local transaction is to reuse the same connection instance inside the transaction scope. That's exactly what LocalTransactionScope does.
+TransactionScope class itself doesn't guarantee that the transaction won't escalate to MSDTC - it depends on database type and version ([Avoid unwanted Escalation to Distributed Transactions](https://petermeinl.wordpress.com/2011/03/13/avoiding-unwanted-escalation-to-distributed-transactions/)). The only way to always get a local transaction is to reuse the same connection instance inside the transaction scope. That's exactly what LocalTransactionScope does.
 
 How to use
 ===
