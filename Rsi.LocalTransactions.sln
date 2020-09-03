@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{980BB3D4-1360-4B82-AA7B-AD4D6C328A12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rsi.LocalTransactions", "src\Rsi.LocalTransactions\Rsi.LocalTransactions.csproj", "{292F132A-620C-41BD-98F1-EDFC3AD37C90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rsi.LocalTransactions.Tests", "tests\Rsi.LocalTransactions.Tests\Rsi.LocalTransactions.Tests.csproj", "{BA4693FA-BE43-4E9E-B709-27DC84743FD2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{292F132A-620C-41BD-98F1-EDFC3AD37C90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{292F132A-620C-41BD-98F1-EDFC3AD37C90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{292F132A-620C-41BD-98F1-EDFC3AD37C90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{292F132A-620C-41BD-98F1-EDFC3AD37C90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA4693FA-BE43-4E9E-B709-27DC84743FD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA4693FA-BE43-4E9E-B709-27DC84743FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA4693FA-BE43-4E9E-B709-27DC84743FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA4693FA-BE43-4E9E-B709-27DC84743FD2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BA4693FA-BE43-4E9E-B709-27DC84743FD2} = {980BB3D4-1360-4B82-AA7B-AD4D6C328A12}
+	EndGlobalSection
+EndGlobal

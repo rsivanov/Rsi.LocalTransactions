@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <PackageVersion>1.0.0</PackageVersion>
+        <AssemblyVersion>$(PackageVersion)</AssemblyVersion>
+        <Authors>rsivanov</Authors>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/rsivanov/Rsi.LocalTransactions</PackageProjectUrl>
+        <PackageDescription>Provides an implementation of LocalTransactionScope and DbConnectionScope classes that guarantee a local transaction (doesn't escalate to a distributed transaction) through reusing the same connection in an async code scope</PackageDescription>
+        <Copyright>Copyright 2020</Copyright>
+        <PackageTags>TransactionScope;Local Transactions;DbConnectionScope</PackageTags>
+        <RepositoryUrl>https://github.com/rsivanov/Rsi.LocalTransactions</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+
+</Project>
