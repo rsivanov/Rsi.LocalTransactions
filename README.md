@@ -14,34 +14,58 @@ How to use
 Just use LocalTransactionScope the same way you would use standard TransactionScope and get a connection only through DbConnectionScope.Current. Below is an example of a test code, in a real application you would need to use SqlClientFactory and SqlConnection instead of mocks.
 
 ```csharp
-private DbConnection GetOpenConnection()
-{
-    if (DbConnectionScope.Current == null)
-        return new MockDbConnection {ConnectionString =  MockConnectionString};
-
-    return DbConnectionScope.Current.GetOpenConnection(_dbProviderFactory, MockConnectionString);
-}
-
 [Fact]
 public async Task GetOpenConnection_InsideNestedRequiredTransactionScope_ReturnsTheSameInstance()
 {
     using (var transactionScope = new LocalTransactionScope())
     {
-        var connection1 = GetOpenConnection();
+        using var connectionProvider1 = new MockDbConnectionProvider();
+        var connection1 = connectionProvider1.Connection;
         using (var nestedTransactionScope = new LocalTransactionScope())
         {
-            var connection2 = GetOpenConnection();
+            using var connectionProvider2 = new MockDbConnectionProvider();
+            var connection2 = connectionProvider2.Connection;
             await Task.Delay(0);
-            var connection3 = GetOpenConnection();
+            using var connectionProvider3 = new MockDbConnectionProvider();
+            var connection3 = connectionProvider3.Connection;
+            
             Assert.Same(connection2, connection3);
             Assert.Same(connection1, connection2);
+            
             nestedTransactionScope.Complete();
         }
         
-        var connection4 = GetOpenConnection();
+        using var connectionProvider4 = new MockDbConnectionProvider();
+        var connection4 = connectionProvider4.Connection;
+        
         Assert.Same(connection1, connection4);				
 
         transactionScope.Complete();
     }
+}
+
+public class MockDbConnectionProvider : IDbConnectionProvider
+{
+    private readonly MockDbConnection _connection;
+    private static readonly MockDbProviderFactory _dbProviderFactory = new MockDbProviderFactory();
+    private const string MockConnectionString = "ReallyImportantProductionDatabase";
+
+    public MockDbConnectionProvider()
+    {
+        if (DbConnectionScope.Current == null)
+        {
+            _connection = new MockDbConnection {ConnectionString = MockConnectionString};
+            _connection.Open();
+        }
+    }
+
+    public void Dispose()
+    {
+        _connection?.Dispose();
+    }
+
+    public DbConnection Connection => _connection ??
+                                      DbConnectionScope.Current.GetOpenConnection(_dbProviderFactory,
+                                          MockConnectionString);
 }
 ```
